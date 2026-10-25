@@ -1,0 +1,25 @@
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;overflow:hidden;background:radial-gradient(900px 500px at 85% 10%,color-mix(in srgb,var(--g4) 28%,transparent),transparent 70%),radial-gradient(700px 500px at 0% 100%,color-mix(in srgb,var(--g3) 20%,transparent),transparent 70%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5vw,3.9rem);font-weight:700;margin-bottom:20px;animation:rise 1s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 .ln{display:block}
+.hero p.sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);max-width:34em;animation:rise 1s .15s cubic-bezier(.2,.8,.2,1) both}
+.hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;animation:rise 1s .3s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.stage{position:relative;aspect-ratio:1;max-width:460px;width:100%;margin-inline:auto;will-change:transform}
+.ring{position:absolute;inset:-6%;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--accent) 55%,transparent);animation:spin 40s linear infinite}
+.ring.r2{inset:-16%;border-style:solid;border-color:color-mix(in srgb,var(--accent) 22%,transparent);animation-duration:70s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.logo{position:absolute;inset:0;transition:transform .15s ease-out;animation:float 6s ease-in-out infinite}
+.logo img{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 30px 40px var(--shadow))}
+.shine{position:absolute;inset:0;overflow:hidden;-webkit-mask:url(/logo-360.webp) center/contain no-repeat;mask:url(/logo-360.webp) center/contain no-repeat;pointer-events:none}
+/* Only a transform moves (GPU), so nothing is repainted on every frame. The mask (wallet shape) stays still. */
+.shine::before{content:"";position:absolute;inset:0;width:100%;background:linear-gradient(105deg,transparent 20%,rgba(255,236,170,.35) 50%,transparent 80%);transform:translate3d(-100%,0,0);animation:shine 5s 1.2s ease-in-out infinite;will-change:transform}
+@keyframes shine{0%{transform:translate3d(-100%,0,0)}35%,100%{transform:translate3d(100%,0,0)}}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -12px}}
+.coin{position:absolute;width:var(--s);height:var(--s);border-radius:50%;background:radial-gradient(circle at 30% 30%,#F3DC9A,var(--gold) 60%,#A98433);box-shadow:0 6px 14px -4px var(--shadow);inset-inline-start:var(--x);top:var(--y);animation:drift var(--d) ease-in-out infinite;animation-delay:var(--dl)}
+@keyframes drift{0%,100%{transform:translate(0,0) rotateY(0)}50%{transform:translate(10px,-26px) rotateY(180deg)}}
+.hint{position:absolute;bottom:22px;inset-inline:0;display:flex;justify-content:center}
+.hint i{width:24px;height:38px;border:2px solid var(--muted);border-radius:14px;position:relative;opacity:.6}
+.hint i::after{content:"";position:absolute;top:6px;left:50%;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--muted);animation:wheel 1.6s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(14px)}}

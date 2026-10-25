@@ -1,0 +1,44 @@
+:root{
+  --g1:#1C2B28;--g2:#416556;--g3:#568B7B;--g4:#7CA597;--slate:#434D54;--olive:#7B7D6D;--stone:#BDBFB8;--mist:#DFE5E1;
+  --gold:#D9B560;
+  --bg:#EEF2EF;--surface:#F8FAF8;--card:#FFFFFF;--text:#1C2B28;--muted:#5C6B66;--line:#CBD5D0;--accent:#416556;--accent2:#568B7B;--on-accent:#F4F8F6;--shadow:rgba(28,43,40,.14);
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#121C1A;--surface:#17231F;--card:#1C2B28;--text:#DFE5E1;--muted:#98A8A1;--line:#2F433D;--accent:#7CA597;--accent2:#568B7B;--on-accent:#10201B;--shadow:rgba(0,0,0,.45);
+}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+h1,h2,h3{line-height:1.25;letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:600}
+
+/* scroll progress */
+.progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:60;background:var(--accent);transform-origin:var(--origin,left);transform:scaleX(0);will-change:transform}
+[dir=rtl] .progress{--origin:right}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,box-shadow .3s}
+.nav.solid{background:color-mix(in srgb,var(--bg) 94%,transparent);box-shadow:0 1px 0 var(--line)}
+/* the blur is expensive on phones, so it is desktop only */
+@media (min-width:901px){.nav.solid{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px)}}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem}
+.brand img{width:36px;height:36px;object-fit:contain}
+.links{display:flex;gap:22px;margin-inline-start:auto;font-size:.95rem;color:var(--muted)}
+.links a{transition:color .2s}.links a:hover{color:var(--text)}
+.lang{border:1.5px solid var(--line);border-radius:999px;padding:4px 14px;font-size:.88rem;transition:border-color .2s,background .2s}
+.lang:hover{border-color:var(--accent);background:var(--card)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;padding:12px 22px;font-weight:600;transition:transform .2s,box-shadow .2s,background .2s}
+.btn.primary{background:var(--accent);color:var(--on-accent);box-shadow:0 8px 24px -8px var(--shadow);position:relative}
+.btn.primary::after{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid var(--accent);pointer-events:none;animation:ping 3.2s ease-out infinite}
+.btn.primary:hover{transform:translateY(-2px)}
+.btn.ghost{border:1.5px solid var(--line)}.btn.ghost:hover{border-color:var(--accent);transform:translateY(-2px)}
+.nav .btn{padding:8px 16px;font-size:.9rem}
+@keyframes ping{0%{opacity:.55;transform:scale(1)}70%,100%{opacity:0;transform:scale(1.14,1.45)}}
+
+/* off-screen sections: pause endless animations */
+.paused,.paused *,.paused::before,.paused *::before,.paused *::after{animation-play-state:paused!important}
